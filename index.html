@@ -88,10 +88,10 @@
         }
       }
     };
-    var positiveCummulative = [1,2,7,10,18,23,38,82,128,188,265,321,382,503,614,804,959,1135,1413,1705,2051,2460];
-    var positiveActive = [1,2,3,9,16,16,28,64,105,150,183,193,194,238,293,422,456,521,609,746,916,1047];
-    var ICData = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,35,55,96,135,177,210];
-    var dateLabels = ["2/27/2020","2/28/2020","2/29/2020","3/1/2020","3/2/2020","3/3/2020","3/4/2020","3/5/2020","3/6/2020","3/7/2020","3/8/2020","3/9/2020","3/10/2020","3/11/2020","3/12/2020","3/13/2020","3/14/2020","3/15/2020","3/16/2020","3/17/2020","3/18/2020","3/19/2020"];
+    var positiveCummulative = [1,2,7,10,18,23,38,82,128,188,265,321,382,503,614,804,959,1135,1413,1705,2051,2460,2994];
+    var positiveActive = [1,2,3,9,16,16,28,64,105,150,183,193,194,238,293,422,456,521,609,746,916,1047,1289];
+    var ICData = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,35,55,96,135,177,210,281];
+    var dateLabels = ["2/27/2020","2/28/2020","2/29/2020","3/1/2020","3/2/2020","3/3/2020","3/4/2020","3/5/2020","3/6/2020","3/7/2020","3/8/2020","3/9/2020","3/10/2020","3/11/2020","3/12/2020","3/13/2020","3/14/2020","3/15/2020","3/16/2020","3/17/2020","3/18/2020","3/19/2020","3/20/2020"];
 
 
     function autorun()
@@ -234,11 +234,14 @@
             breakpoint: 1440,
             options: {
               chart: {
-                height: '60%',
+                height: '1050',
+              },
+              stroke: {
+                width: 10,
               },
               title: {
-                margin: 50,
-                offsetY: 20,
+                margin: 100,
+                offsetY: 0,
                 offsetX: 10,
                 style: {
                   fontSize:  '40px',
@@ -247,9 +250,10 @@
               },
               xaxis: {
                 labels: {
+                  offsetY: 20,
                   rotate: -45,
                   style: {
-                    fontSize: '30px'
+                    fontSize: '35px'
                   },
                   formatter: function(value, timestamp, index) {
                     if (positiveActive.length % 2 == 0 && dateLabels.indexOf(value) % 2 != 0){
@@ -263,20 +267,28 @@
                 }
               },
               yaxis: {
-              max: 1600,
+                max: 1600,
+                floating: true,
                 labels: {
-                  show: false
-                },
-                axisBorder: {
-                    show: true,
-                    color: '#78909C',
-                    offsetX: 0,
-                    offsetY: 0
+                  show: true,
+                  align: 'left',
+                  offsetX: 90,
+                  style: {
+                    fontSize: '35px',
+                  }
                 }
               },
               dataLabels: {
+                enabled: true,
                 style: {
-                  fontSize: '25px',
+                  fontSize: '35px',
+                },
+                formatter: function(value, timestamp, index) {
+                    if(value == positiveActive[positiveActive.length-1] || value == ICData[ICData.length-1]){
+                      return value;
+                    } else {
+                      return "";
+                    }
                 }
               },
               legend: {
@@ -298,7 +310,7 @@
                   label: {
                     borderColor: '#d73539',
                     style: {
-                      fontSize: '30px',
+                      fontSize: '35px',
                       color: '#FFF',
                       background: '#d73539',
                     },
@@ -317,7 +329,7 @@
                     textAnchor: 'end',
                     position: 'right',
                     style: {
-                      fontSize: '30px',
+                      fontSize: '35px',
                       color: '#fff',
                       background: '#27648b',
                     },
@@ -336,7 +348,7 @@
                     textAnchor: 'end',
                     position: 'right',
                     style: {
-                      fontSize: '30px',
+                      fontSize: '35px',
                       color: '#fff',
                       background: '#f4a334',
                     },
