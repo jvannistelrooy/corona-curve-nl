@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>COVID-19 cijfers</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <style type="text/css">
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-size: 20px;
+    }
+
+    #chart {
+      margin: 10px;
+    }
+  </style>
+  </head>
+  <body>
+
+    <div id="chart" style="height: (100% - 30px)">      
+    </div>
+    <div>
+      <ul>
+        <li>Alleen COVID-19 patiënten van minder dan 3 weken oud</li>
+        <li>RIVM data</li>
+        <li>NVIC data, met uitzondering van 14,15,16 maart. Die eerste dagen zijn gebaseerd op diverse nieuwsberichten</li>
+        <li>IC capaciteit volgens quote van Diederik Gommers op <a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">NOS.nl</a>. 1000 IC plekken kunnen vrijgemaakt worden met beademingsapparaten. 1500 IC plekken kunnen maximaal vrijgemaakt worden, waarbij voor 500 plekken de beadmingsapparatuur nog niet beschikbaar is.</li>
+      </ul> 
+    </div>
+
+  <script type="text/javascript">
+    var nl = {
+      "name": "nl",
+      "options": {
+        "months": [
+          "Januari",
+          "Februari",
+          "Maart",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Augustus",
+          "September",
+          "Oktober",
+          "November",
+          "December"
+        ],
+        "shortMonths": [
+          "Jan",
+          "Feb",
+          "Mrt",
+          "Apr",
+          "Mei",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Okt",
+          "Nov",
+          "Dec"
+        ],
+        "days": [
+          "Zondag",
+          "Maandag",
+          "Dinsdag",
+          "Woensdag",
+          "Donderdag",
+          "Vrijdag",
+          "Zaterdag"
+        ],
+        "shortDays": ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
+        "toolbar": {
+          "exportToSVG": "Download SVG",
+          "exportToPNG": "Download PNG",
+          "exportToCSV": "Download CSV",
+          "menu": "Menu",
+          "selection": "Selectie",
+          "selectionZoom": "Zoom selectie",
+          "zoomIn": "Zoom in",
+          "zoomOut": "Zoom out",
+          "pan": "Verplaatsen",
+          "reset": "Standaardwaarden"
+        }
+      }
+    };
+    var positiveCummulative = [1,2,7,10,18,23,38,82,128,188,265,321,382,503,614,804,959,1135,1413,1705,2051,2460];
+    var positiveActive = [1,2,3,9,16,16,28,64,105,150,183,193,194,238,293,422,456,521,609,746,916,1047];
+    var ICData = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,35,55,96,135,177,210];
+    var dateLabels = ["2/27/2020","2/28/2020","2/29/2020","3/1/2020","3/2/2020","3/3/2020","3/4/2020","3/5/2020","3/6/2020","3/7/2020","3/8/2020","3/9/2020","3/10/2020","3/11/2020","3/12/2020","3/13/2020","3/14/2020","3/15/2020","3/16/2020","3/17/2020","3/18/2020","3/19/2020"];
+
+
+    function autorun()
+    {
+
+      // Graph code
+      var options = {
+          series: [{
+            name: "COVID-19 virus positief laatste 3 weken",
+            data: positiveActive
+          },{
+            name: "COVID-19 patiënten op IC",
+            data: ICData
+          }
+          ],
+          xaxis: {
+            type: "categories",
+            categories: dateLabels,
+            labels: {
+              style: {
+                fontSize: '16px'
+              },
+              formatter: function(value, timestamp, index) {
+                return moment(value).format("D-MMM")
+              },
+              format: 'd-MMM',
+            }
+          },
+          annotations: {
+            yaxis: [{
+              y: 1000,
+              y2: 1500,
+              borderColor: '#000',
+              fillColor: '#d73539',
+              opacity: 0.2,
+              label: {
+                borderColor: '#d73539',
+                style: {
+                  fontSize: '14px',
+                  color: '#FFF',
+                  background: '#d73539',
+                },
+                text: 'Maximale IC capaciteit Nederland (1000 tot 1500)',
+              }
+            }],
+            points: [{
+              x: moment(dateLabels[dateLabels.length - 1]).format("D-MMM"),
+              y: positiveActive[positiveActive.length - 1],
+              marker: {
+                size: 0,
+              },
+              label: {
+                offsetY: -5,
+                borderColor: '#27648b',
+                textAnchor: 'end',
+                position: 'right',
+                style: {
+                  fontSize: '14px',
+                  color: '#fff',
+                  background: '#27648b',
+                },
+                text: 'COVID-19 virus positief laatste 3 weken',
+              }
+            },
+            {
+              x: moment(dateLabels[dateLabels.length - 1]).format("D-MMM"),
+              y: ICData[ICData.length - 1],
+              marker: {
+                size: 0,
+              },
+              label: {
+                offsetY: -5,
+                borderColor: '#f4a334',
+                textAnchor: 'end',
+                position: 'right',
+                style: {
+                  fontSize: '14px',
+                  color: '#fff',
+                  background: '#f4a334',
+                },
+                text: 'COVID-19 patiënten op IC',
+              }
+            }]
+          },
+          yaxis: {
+            max: 1600,
+            labels: {
+              style: {
+                fontSize: '16px'
+              }
+            }
+          },
+          chart: {
+            locales: [nl],
+            defaultLocale: 'nl',
+            height: '96%',
+            type: 'line',
+            toolbar: {
+              show: false
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            textAnchor: 'end',
+            // formatter: function (value) {
+            //   if(value == positiveData[positiveData.length - 1]) { 
+            //     return "Positief: " + value 
+            //   } else if(value == ICData[ICData.length - 1]) { 
+            //     return "IC: " + value 
+            //   } else {
+            //     return value;
+            //   }
+            // }
+          },
+          markers: {
+            size: 0,
+          },
+          stroke: {
+            curve: 'straight',
+          },
+          colors:['#27648b', '#f4a334', '#d73539'],
+          title: {
+            text: "Coronavirus en IC capaciteit in Nederland",
+            style: {
+              fontSize:  '25px',
+              fontWeight:  'bold',
+              color:  '#263238'
+            },
+          },
+          legend: {
+            position: 'top',
+            fontSize: '16px',
+            horizontalAlign: 'center',
+            itemMargin: {
+                horizontal: 10,
+                vertical: 5
+            },  
+          },
+          responsive: [{
+            breakpoint: 1440,
+            options: {
+              chart: {
+                height: '60%',
+              },
+              title: {
+                margin: 50,
+                offsetY: 20,
+                offsetX: 10,
+                style: {
+                  fontSize:  '40px',
+                  height: '50px',
+                },
+              },
+              xaxis: {
+                labels: {
+                  rotate: -45,
+                  style: {
+                    fontSize: '30px'
+                  },
+                  formatter: function(value, timestamp, index) {
+                    if (positiveActive.length % 2 == 0 && dateLabels.indexOf(value) % 2 != 0){
+                      return moment(value).format("D-M");
+                    } else if (positiveActive.length % 2 != 0 && dateLabels.indexOf(value) % 2 == 0){
+                      return moment(value).format("D-M");
+                    } else {
+                      return "";
+                    }
+                  }
+                }
+              },
+              yaxis: {
+              max: 1600,
+                labels: {
+                  show: false
+                },
+                axisBorder: {
+                    show: true,
+                    color: '#78909C',
+                    offsetX: 0,
+                    offsetY: 0
+                }
+              },
+              dataLabels: {
+                style: {
+                  fontSize: '25px',
+                }
+              },
+              legend: {
+                show: false,
+                fontSize: '35px',
+                horizontalAlign: 'left',
+                itemMargin: {
+                    horizontal: 10,
+                    vertical: 2
+                },  
+              },
+              annotations: {
+                yaxis: [{
+                  y: 1000,
+                  y2: 1500,
+                  borderColor: '#000',
+                  fillColor: '#d73539',
+                  opacity: 0.2,
+                  label: {
+                    borderColor: '#d73539',
+                    style: {
+                      fontSize: '30px',
+                      color: '#FFF',
+                      background: '#d73539',
+                    },
+                    text: 'Maximale IC capaciteit Nederland (1000 tot 1500)',
+                  }
+                }],
+                points: [{
+                  x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
+                  y: positiveActive[positiveActive.length - 1],
+                  marker: {
+                    size: 0,
+                  },
+                  label: {
+                    offsetY: -5,
+                    borderColor: '#27648b',
+                    textAnchor: 'end',
+                    position: 'right',
+                    style: {
+                      fontSize: '30px',
+                      color: '#fff',
+                      background: '#27648b',
+                    },
+                    text: 'COVID-19 virus positief laatste 3 weken',
+                  }
+                },
+                {
+                  x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
+                  y: ICData[ICData.length - 1],
+                  marker: {
+                    size: 0,
+                  },
+                  label: {
+                    offsetY: -5,
+                    borderColor: '#f4a334',
+                    textAnchor: 'end',
+                    position: 'right',
+                    style: {
+                      fontSize: '30px',
+                      color: '#fff',
+                      background: '#f4a334',
+                    },
+                    text: 'COVID-19 patiënten op IC',
+                  }
+                }]
+              }
+            }
+          }]
+        };
+
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+
+    }
+    if (window.addEventListener) window.addEventListener("load", autorun, false);
+    else if (window.attachEvent) window.attachEvent("onload", autorun);
+    else window.onload = autorun;
+    </script>
+
+  </body>
+</html>
