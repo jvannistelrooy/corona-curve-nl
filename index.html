@@ -28,7 +28,7 @@
       font-size: 14px;
       line-height: 1.25;
       max-width: 900px;
-      margin: 30px 10px;
+      margin: 40px 10px;
     }
 
     #context li {
@@ -42,7 +42,7 @@
       }
     } 
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1080px) {
       #context {
         font-size: 20px;
         max-width: none;
@@ -337,62 +337,62 @@
                     vertical: 2
                 },  
               },
-              // annotations: {
-              //   yaxis: [{
-              //     y: 1000,
-              //     y2: 1500,
-              //     borderColor: '#000',
-              //     fillColor: '#d73539',
-              //     opacity: 0.2,
-              //     label: {
-              //       borderColor: '#d73539',
-              //       style: {
-              //         fontSize: '35px',
-              //         color: '#FFF',
-              //         background: '#d73539',
-              //       },
-              //       text: 'Maximale IC capaciteit Nederland (1000 tot 1500)',
-              //     }
-              //   }],
-              //   points: [{
-              //     x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
-              //     y: positiveActive[positiveActive.length - 1],
-              //     marker: {
-              //       size: 0,
-              //     },
-              //     label: {
-              //       offsetY: -5,
-              //       borderColor: '#27648b',
-              //       textAnchor: 'end',
-              //       position: 'right',
-              //       style: {
-              //         fontSize: '35px',
-              //         color: '#fff',
-              //         background: '#27648b',
-              //       },
-              //       text: 'COVID-19 virus positief laatste 3 weken',
-              //     }
-              //   },
-              //   {
-              //     x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
-              //     y: ICData[ICData.length - 1],
-              //     marker: {
-              //       size: 0,
-              //     },
-              //     label: {
-              //       offsetY: -5,
-              //       borderColor: '#f4a334',
-              //       textAnchor: 'end',
-              //       position: 'right',
-              //       style: {
-              //         fontSize: '35px',
-              //         color: '#fff',
-              //         background: '#f4a334',
-              //       },
-              //       text: 'COVID-19 patiënten op IC',
-              //     }
-              //   }]
-              // }
+              annotations: {
+                yaxis: [{
+                  y: 1000,
+                  y2: 1500,
+                  borderColor: '#000',
+                  fillColor: '#d73539',
+                  opacity: 0.2,
+                  label: {
+                    borderColor: '#d73539',
+                    style: {
+                      fontSize: '35px',
+                      color: '#FFF',
+                      background: '#d73539',
+                    },
+                    text: 'Maximale IC capaciteit Nederland (1000 tot 1500)',
+                  }
+                }],
+                points: [{
+                  x: moment(dateLabels[dateLabels.length - 1]).format("D-MMM"),
+                  y: positiveActive[positiveActive.length - 1],
+                  marker: {
+                    size: 0,
+                  },
+                  label: {
+                    offsetY: -5,
+                    borderColor: '#27648b',
+                    textAnchor: 'end',
+                    position: 'right',
+                    style: {
+                      fontSize: '35px',
+                      color: '#fff',
+                      background: '#27648b',
+                    },
+                    text: 'COVID-19 virus positief laatste 3 weken',
+                  }
+                },
+                {
+                  x: moment(dateLabels[dateLabels.length - 1]).format("D-MMM"),
+                  y: ICData[ICData.length - 1],
+                  marker: {
+                    size: 0,
+                  },
+                  label: {
+                    offsetY: -5,
+                    borderColor: '#f4a334',
+                    textAnchor: 'end',
+                    position: 'right',
+                    style: {
+                      fontSize: '35px',
+                      color: '#fff',
+                      background: '#f4a334',
+                    },
+                    text: 'COVID-19 patiënten op IC',
+                  }
+                }]
+              }
             }
           }]
         };
