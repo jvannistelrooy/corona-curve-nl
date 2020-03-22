@@ -2,6 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Infextiecijfers over het coronavirus en de IC bezetting in Nederland">
+    <meta name="keywords" content="corona, IC, intensive care, grafiek, COVID-19">
+    <meta name="author" content="Jasper van Nistelrooy">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>COVID-19 cijfers besmet en op IC in Nederland</title>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -51,7 +57,7 @@
         <ul>
           <li><strong>COVID-19 virus positief laatste 3 weken:</strong> Het aantal mensen in Nederland dat positief is getest op het coronavirus in de laatste 3 weken volgens <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">gegevens van het RIVM</a>. De teller van het RIVM geeft het totaal aantal positief geteste mensen in Nederland. Een groot deel van deze groep is inmiddels genezen of overleden. Het RIVM geeft geen getallen over genezingen.</li>
           <li><strong>COVID-19 patiënten op IC:</strong> Het aantal mensen in Nederland dat positief is getest op het coronavirus en op de Intensive Care van een Nederlands ziekenhuis is opgenomen volgens <a href="https://nvic.nl/" target="_blank">gegevens van het NVIC (Nederlandse Vereniging voor Intensive Care)</a>. IC data voor 14,15 en 16 maart is indirect verkregen via diverse nieuwsbronnen verkregen.</li>
-          <li><strong>Maximale IC capaciteit Nederland (1000 tot 1500):</strong> IC capaciteit volgens quote van Diederik Gommers op <a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">NOS.nl</a> op 19-03-2020: "In een crisisfase kan dat aantal [IC-plekken voor coronapatiënten] worden verhoogd tot ongeveer 1500 'corona-bedden'. Volgens Diederik Gommers van de Vereniging zijn er dan wel 500 extra beademingsapparaten nodig, die nog gevonden moeten worden.".</li>
+          <li><strong>Maximale IC capaciteit Nederland (1000 tot 1500):</strong> Intensive Care capaciteit volgens quote van Diederik Gommers op <a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">NOS.nl</a> op 19-03-2020: "In een crisisfase kan dat aantal [IC-plekken voor coronapatiënten] worden verhoogd tot ongeveer 1500 'corona-bedden'. Volgens Diederik Gommers van de Vereniging zijn er dan wel 500 extra beademingsapparaten nodig, die nog gevonden moeten worden.".</li>
           <li><strong>Waarom deze grafiek?</strong> Grafieken over corona tonen vaak cumulatieve infectiecijfers (de lijn kan alleen stijgen). Daarnaast vond ik geen grafiek die de IC cijfers van het NVIC achter elkaar zet (het NVIC geeft alleen het actuele cijfer van vandaag). Ik heb dit in een grafiek gezet en deel deze nu online.</li>
           <li><a href="https://twitter.com/jvannistelrooy" target="_blank">https://twitter.com/jvannistelrooy</a></li>
           <li><strong>Bronnen:</strong> <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">RIVM</a>, <a href="https://nvic.nl/" target="_blank">NVIC</a></li>
@@ -205,7 +211,6 @@
           yaxis: {
             min: 0,
             max: 1800,
-            tickAmount: 8,
             labels: {
               style: {
                 fontSize: '16px'
@@ -296,7 +301,7 @@
                   //     return "";
                   //   }
                   // }
-                }
+                },
               },
               yaxis: {
                 max: 1600,
@@ -332,62 +337,62 @@
                     vertical: 2
                 },  
               },
-              annotations: {
-                yaxis: [{
-                  y: 1000,
-                  y2: 1500,
-                  borderColor: '#000',
-                  fillColor: '#d73539',
-                  opacity: 0.2,
-                  label: {
-                    borderColor: '#d73539',
-                    style: {
-                      fontSize: '35px',
-                      color: '#FFF',
-                      background: '#d73539',
-                    },
-                    text: 'Maximale IC capaciteit Nederland (1000 tot 1500)',
-                  }
-                }],
-                points: [{
-                  x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
-                  y: positiveActive[positiveActive.length - 1],
-                  marker: {
-                    size: 0,
-                  },
-                  label: {
-                    offsetY: -5,
-                    borderColor: '#27648b',
-                    textAnchor: 'end',
-                    position: 'right',
-                    style: {
-                      fontSize: '35px',
-                      color: '#fff',
-                      background: '#27648b',
-                    },
-                    text: 'COVID-19 virus positief laatste 3 weken',
-                  }
-                },
-                {
-                  x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
-                  y: ICData[ICData.length - 1],
-                  marker: {
-                    size: 0,
-                  },
-                  label: {
-                    offsetY: -5,
-                    borderColor: '#f4a334',
-                    textAnchor: 'end',
-                    position: 'right',
-                    style: {
-                      fontSize: '35px',
-                      color: '#fff',
-                      background: '#f4a334',
-                    },
-                    text: 'COVID-19 patiënten op IC',
-                  }
-                }]
-              }
+              // annotations: {
+              //   yaxis: [{
+              //     y: 1000,
+              //     y2: 1500,
+              //     borderColor: '#000',
+              //     fillColor: '#d73539',
+              //     opacity: 0.2,
+              //     label: {
+              //       borderColor: '#d73539',
+              //       style: {
+              //         fontSize: '35px',
+              //         color: '#FFF',
+              //         background: '#d73539',
+              //       },
+              //       text: 'Maximale IC capaciteit Nederland (1000 tot 1500)',
+              //     }
+              //   }],
+              //   points: [{
+              //     x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
+              //     y: positiveActive[positiveActive.length - 1],
+              //     marker: {
+              //       size: 0,
+              //     },
+              //     label: {
+              //       offsetY: -5,
+              //       borderColor: '#27648b',
+              //       textAnchor: 'end',
+              //       position: 'right',
+              //       style: {
+              //         fontSize: '35px',
+              //         color: '#fff',
+              //         background: '#27648b',
+              //       },
+              //       text: 'COVID-19 virus positief laatste 3 weken',
+              //     }
+              //   },
+              //   {
+              //     x: moment(dateLabels[dateLabels.length - 1]).format("D-M"),
+              //     y: ICData[ICData.length - 1],
+              //     marker: {
+              //       size: 0,
+              //     },
+              //     label: {
+              //       offsetY: -5,
+              //       borderColor: '#f4a334',
+              //       textAnchor: 'end',
+              //       position: 'right',
+              //       style: {
+              //         fontSize: '35px',
+              //         color: '#fff',
+              //         background: '#f4a334',
+              //       },
+              //       text: 'COVID-19 patiënten op IC',
+              //     }
+              //   }]
+              // }
             }
           }]
         };
