@@ -22,15 +22,23 @@
       font-size: 14px;
       line-height: 1.25;
       max-width: 900px;
+      margin: 10px;
     }
 
     #context li {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     @media only screen and (max-width: 1440px) {
       #context {
         font-size: 30px;
+        max-width: none;
+      }
+    } 
+
+    @media only screen and (max-width: 768px) {
+      #context {
+        font-size: 20px;
         max-width: none;
       }
     } 
@@ -43,9 +51,10 @@
         <ul>
           <li><strong>COVID-19 virus positief laatste 3 weken:</strong> Het aantal mensen in Nederland dat positief is getest op het coronavirus in de laatste 3 weken volgens <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">gegevens van het RIVM</a>. De teller van het RIVM geeft het totaal aantal positief geteste mensen in Nederland. Een groot deel van deze groep is inmiddels genezen of overleden. Het RIVM geeft geen getallen over genezingen.</li>
           <li><strong>COVID-19 patiënten op IC:</strong> Het aantal mensen in Nederland dat positief is getest op het coronavirus en op de Intensive Care van een Nederlands ziekenhuis is opgenomen volgens <a href="https://nvic.nl/" target="_blank">gegevens van het NVIC (Nederlandse Vereniging voor Intensive Care)</a>. IC data voor 14,15 en 16 maart is indirect verkregen via diverse nieuwsbronnen verkregen.</li>
-          <li><strong>Maximale IC capaciteit Nederland (1000 tot 1500)</strong>IC capaciteit volgens quote van Diederik Gommers op <a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">NOS.nl</a> op 19-03-2020: "In een crisisfase kan dat aantal [IC-plekken voor coronapatiënten] worden verhoogd tot ongeveer 1500 'corona-bedden'. Volgens Diederik Gommers van de Vereniging zijn er dan wel 500 extra beademingsapparaten nodig, die nog gevonden moeten worden.".</li>
-          <li><strong>Waarom deze grafiek?</strong> Veel grafieken over corona tonen cumulatieve infectiecijfers (de lijn kan alleen stijgen). Daarnaast vond ik geen grafiek die de IC cijfers van het NVIC achter elkaar zet (het NVIC geeft alleen het actuele cijfer van vandaag). Ik heb dit uit interesse in een grafiek gezet en deel deze nu online.</li>
+          <li><strong>Maximale IC capaciteit Nederland (1000 tot 1500):</strong> IC capaciteit volgens quote van Diederik Gommers op <a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">NOS.nl</a> op 19-03-2020: "In een crisisfase kan dat aantal [IC-plekken voor coronapatiënten] worden verhoogd tot ongeveer 1500 'corona-bedden'. Volgens Diederik Gommers van de Vereniging zijn er dan wel 500 extra beademingsapparaten nodig, die nog gevonden moeten worden.".</li>
+          <li><strong>Waarom deze grafiek?</strong> Grafieken over corona tonen vaak cumulatieve infectiecijfers (de lijn kan alleen stijgen). Daarnaast vond ik geen grafiek die de IC cijfers van het NVIC achter elkaar zet (het NVIC geeft alleen het actuele cijfer van vandaag). Ik heb dit in een grafiek gezet en deel deze nu online.</li>
           <li><a href="https://twitter.com/jvannistelrooy" target="_blank">https://twitter.com/jvannistelrooy</a></li>
+          <li><strong>Bronnen:</strong> <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">RIVM</a>, <a href="https://nvic.nl/" target="_blank">NVIC</a></li>
           <li><strong>Laatste update:</strong> <span id="lastModified"></span></li>
         </ul> 
       </div>
@@ -134,8 +143,7 @@
               },
               formatter: function(value, timestamp, index) {
                 return moment(value).format("D-MMM")
-              },
-              format: 'd-MMM',
+              }
             }
           },
           annotations: {
@@ -278,15 +286,16 @@
                   style: {
                     fontSize: '35px'
                   },
-                  formatter: function(value, timestamp, index) {
-                    if (positiveActive.length % 2 == 0 && dateLabels.indexOf(value) % 2 != 0){
-                      return moment(value).format("D-M");
-                    } else if (positiveActive.length % 2 != 0 && dateLabels.indexOf(value) % 2 == 0){
-                      return moment(value).format("D-M");
-                    } else {
-                      return "";
-                    }
-                  }
+                  // formatter: function(value, timestamp, index) {
+                  //   console.log(value + " : " + timestamp + " : " + index + " : " + dateLabels.indexOf(value));
+                  //   if (positiveActive.length % 2 == 0 && dateLabels.indexOf(value) % 2 != 0){
+                  //     return moment(value).format("D-M");
+                  //   } else if (positiveActive.length % 2 != 0 && dateLabels.indexOf(value) % 2 == 0){
+                  //     return moment(value).format("D-M");
+                  //   } else {
+                  //     return "";
+                  //   }
+                  // }
                 }
               },
               yaxis: {
@@ -394,5 +403,28 @@
     else window.onload = autorun;
     </script>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBRF66m5briRob4ESG5a6SJmBHY9qqbuWo",
+        authDomain: "guilin-f3f04.firebaseapp.com",
+        databaseURL: "https://guilin-f3f04.firebaseio.com",
+        projectId: "guilin-f3f04",
+        storageBucket: "guilin-f3f04.appspot.com",
+        messagingSenderId: "483466910648",
+        appId: "1:483466910648:web:f2fa9d6817afbae86dcd4d",
+        measurementId: "G-7G8BF0BJ57"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 </html>
