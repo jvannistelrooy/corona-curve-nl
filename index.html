@@ -42,9 +42,9 @@
     }
 
     #context {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.25;
-      max-width: 900px;
+      max-width: 800px;
       padding: 30px 10px;
     }
 
@@ -65,10 +65,10 @@
       </div>
       <div id="context">
         <ul>
-          <li><strong>Confirmed cases last 3 days:</strong> The number of people who tested positive on the novel coronavirus in the past 3 days according to <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">data by the RIVM</a>. The number communicated by the RIVM represents to total number of confirmed Corona cases in the Netherlands. A large part of that group has already recovered. The RIVM does not provide numbers about recovered patients.<br> 
-          ⚠️ The number of confirmed cases depends on the testing strategy and doesn't predict the number of corona patients at the ICU.
+          <li><strong>New confirmed cases:</strong> The number of new people who tested positive for the novel coronavirus according to <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">data by the RIVM</a>. The dashed line is the 5-day centered moving average.<br> 
+          ⚠️ The number of confirmed cases depends on the testing strategy and doesn't predict future cases or the number of corona patients at the ICU.
           </li>
-          <li><strong>Current ICU patients:</strong> The number of people who tested positive on the novel coronavirus and is currently being treated at an ICU in the Netherlands according to data by the <a href="https://nvic.nl/" target="_blank">NVIC (Nederlandse Vereniging voor Intensive Care)</a>. ICU data for March 14, 15, and 16 has been recovered from various news sources.
+          <li><strong>Current ICU patients:</strong> The number of people who tested positive for the novel coronavirus and are currently being treated at an ICU in the Netherlands according to <a href="https://nvic.nl/" target="_blank">data by the NVIC (Nederlandse Vereniging voor Intensive Care)</a>. ICU data for March 14, 15, and 16 has been recovered from various news sources.
           <li><strong>Maximum ICU capacity (925 to 1500):</strong> Intensive Care capacity (called ICU, or IC in Dutch) for Corona patients, according to numbers reported by NOS (<a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">March 19, 2020</a>) (<a href="https://nos.nl/artikel/2327537-corona-in-nederland-cijfers-van-24-maart.html" target="_blank">March 24, 2020</a>).
           <li><strong>Why this graph?</strong> Most graphs about Corona show cumulative numbers (the line can only go up). Next to that, I couldn't find a graph that showed ICU numbers from the NVIC over time (the NVIC only provides the number for today on its website). I've combined RIVM and NVIC data in a graph, which I'm now sharing online.
           <li><a href="https://twitter.com/jvannistelrooy" target="_blank">https://twitter.com/jvannistelrooy</a></li>
@@ -78,14 +78,15 @@
       </div>
 
   <script type="text/javascript">
-    var positiveActive = [1,2,3,9,16,16,28,64,105,150,183,193,194,238,293,422,456,521,609,746,916,1047,1289,1580,1744,1755,1929,2208];
+    var positiveActive = [1,1,5,3,8,5,15,44,46,60,77,56,61,121,111,190,155,176,278,292,346,409,534,637,573,545,811,852]
+    var positiveActiveAverage = [1,2.3,3.6,4.4,7.2,15.0,23.6,34.0,48.4,56.6,60.0,75.0,85.2,107.8,127.6,150.6,182.0,218.2,249.4,300.2,371.8,443.6,499.8,539.6,620.0,683.6,736.0,852.0]
+    //var positiveActive3days = [1,2,3,9,16,16,28,64,105,150,183,193,194,238,293,422,456,521,609,746,916,1047,1289,1580,1744,1755,1929,2208];
     var ICData = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,35,55,96,135,177,210,281,354,405,487,546,644];
     var dateLabels = ["2/27/2020","2/28/2020","2/29/2020","3/1/2020","3/2/2020","3/3/2020","3/4/2020","3/5/2020","3/6/2020","3/7/2020","3/8/2020","3/9/2020","3/10/2020","3/11/2020","3/12/2020","3/13/2020","3/14/2020","3/15/2020","3/16/2020","3/17/2020","3/18/2020","3/19/2020","3/20/2020","3/21/2020","3/22/2020","3/23/2020","3/24/2020","3/25/2020"];
     var dateLabelsMobile = [...dateLabels];
 
     for (var i = dateLabelsMobile.length % 2; i < dateLabelsMobile.length; i += 2) {
       dateLabelsMobile[i] = null;
-      console.log(i);
     }
 
 
@@ -95,18 +96,21 @@
       // Graph code
       var options = {
           series: [{
-            name: "Confirmed corona cases last 3 days",
+            name: "New confirmed corona cases",
             data: positiveActive
+          },{
+            name: "New confirmed cases moving average",
+            data: positiveActiveAverage
           },{
             name: "ICU patients",
             data: ICData
-          },
+          }
           // {
           //   name: "Patiënten overleden",
           //   data: diseased
           // }
           ],
-          colors:['#27648b', '#f4a334', '#444444', '#d73539'],
+          colors:['#27648b', '#85adc7', '#f4a334', '#444444', '#d73539'],
           xaxis: {
             type: "categories",
             categories: dateLabels,
@@ -152,12 +156,12 @@
                   color: '#fff',
                   background: '#27648b',
                 },
-                text: 'Confirmed cases last 3 days',
+                text: 'New confirmed cases',
               }
             },
             {
               x: moment(dateLabels[dateLabels.length - 1]).format("MMM D"),
-              y: ICData[ICData.length - 1],
+              y: 350,
               marker: {
                 size: 0,
               },
@@ -197,7 +201,8 @@
           },
           yaxis: {
             min: 0,
-            max: 2400,
+            max: 1600,
+            decimalsInFloat: 0,
             labels: {
               style: {
                 fontSize: '16px'
@@ -214,6 +219,7 @@
           dataLabels: {
             enabled: true,
             textAnchor: 'end',
+            enabledOnSeries: [0,2]
             // formatter: function (value) {
             //   if(value == positiveData[positiveData.length - 1]) { 
             //     return "Positief: " + value 
@@ -229,6 +235,8 @@
           },
           stroke: {
             curve: 'straight',
+            dashArray: [0,5,0],
+            width: [5,3,5]
           },
           title: {
             text: "Coronavirus and ICU capacity in the Netherlands",
@@ -258,7 +266,8 @@
                 enabled: false,
               },
               stroke: {
-                width: 10,
+                dashArray: [0,10,0],
+                width: [10,5,10]
               },
               title: {
                 text: "Corona and ICU capacity in the Netherlands",
@@ -291,8 +300,9 @@
               },
               yaxis: {
                 min: 0,
-                max: 2400,
+                max: 1600,
                 floating: true,
+                decimalsInFloat: 0,
                 labels: {
                   show: true,
                   align: 'left',
@@ -305,6 +315,7 @@
               dataLabels: {
                 enabled: true,
                 offsetY: -10,
+                enabledOnSeries: [0],
                 style: {
                   fontSize: '35px',
                 },
@@ -343,7 +354,7 @@
                   }
                 }],
                 points: [{
-                  x: moment(dateLabels[dateLabels.length - 1]).format("MMM D"),
+                  x: moment(dateLabelsMobile[dateLabelsMobile.length - 1]).format("MMM D"),
                   y: positiveActive[positiveActive.length - 1],
                   marker: {
                     size: 0,
@@ -358,17 +369,18 @@
                       color: '#fff',
                       background: '#27648b',
                     },
-                    text: 'Confirmed cases last 3 days',
+                    text: 'New confirmed cases',
                   }
                 },
                 {
-                  x: moment(dateLabels[dateLabels.length - 1]).format("MMM D"),
+                  x: moment(dateLabelsMobile[dateLabelsMobile.length - 3]).format("MMM D"),
                   y: ICData[ICData.length - 1],
                   marker: {
                     size: 0,
                   },
                   label: {
-                    offsetY: -26,
+                    offsetY: -45,
+                    offsetX: -20,
                     borderColor: '#f4a334',
                     textAnchor: 'end',
                     position: 'right',
@@ -378,6 +390,27 @@
                       background: '#f4a334',
                     },
                     text: 'Current ICU patients',
+                  }
+                },
+                {
+                  x: moment(dateLabelsMobile[dateLabelsMobile.length - 3]).format("MMM D"),
+                  y: ICData[ICData.length - 1],
+                  marker: {
+                    size: 0,
+                  },
+                  label: {
+                    offsetY: 0,
+                    offsetX: -20,
+                    borderColor: '#f4a334',
+                    textAnchor: 'end',
+                    position: 'right',
+                    style: {
+                      fontSize: '35px',
+                      color: '#fff',
+                      background: '#f4a334',
+                      fontWeight: 'bold'
+                    },
+                    text: '644',
                   }
                 }]
               }
