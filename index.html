@@ -10,7 +10,7 @@
     <meta property="og:title" content="COVID-19 statistics: Confirmed cases en ICU patients in the Netherlands" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jvannistelrooy.github.io/corona-curve-nl/" />
-    <meta property="og:image" content="http://image.thum.io/get/ogImage/https://jvannistelrooy.github.io/corona-curve-nl/?27032020" />
+    <meta property="og:image" content="http://image.thum.io/get/ogImage/https://jvannistelrooy.github.io/corona-curve-nl/?28032020" />
     
     <meta name="description" content="View the development of corona cases, ICU patients, and the Intensive Care capacity in the Netherlands.">
     <meta property="og:description" content="View the development of corona cases, ICU patients, and the Intensive Care capacity in the Netherlands." /> 
@@ -18,7 +18,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="http://image.thum.io/get/ogImage/https://jvannistelrooy.github.io/corona-curve-nl/?27032020" />
+    <meta name="twitter:image" content="http://image.thum.io/get/ogImage/https://jvannistelrooy.github.io/corona-curve-nl/?28032020" />
     
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -68,21 +68,21 @@
           <li><strong>New confirmed cases:</strong> The number of new people who tested positive for the novel coronavirus according to <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">data by the RIVM</a>. The dashed line is the 5-day centered moving average.<br> 
           ⚠️ The number of confirmed cases depends on the testing strategy and doesn't predict future cases or the number of corona patients at the ICU.
           </li>
-          <li><strong>Current ICU patients:</strong> The number of people who tested positive for the novel coronavirus and are currently being treated at an ICU in the Netherlands according to <a href="https://nvic.nl/" target="_blank">data by the NVIC (Nederlandse Vereniging voor Intensive Care)</a>. ICU data for March 14, 15, and 16 has been recovered from various news sources.
-          <li><strong>Maximum ICU capacity (925 to 1500):</strong> Intensive Care capacity (called ICU, or IC in Dutch) for Corona patients, according to numbers reported by NOS (<a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">March 19, 2020</a>) (<a href="https://nos.nl/artikel/2327537-corona-in-nederland-cijfers-van-24-maart.html" target="_blank">March 24, 2020</a>).
-          <li><strong>Why this graph?</strong> Most graphs about Corona show cumulative numbers (the line can only go up). Next to that, I couldn't find a graph that showed ICU numbers from the NVIC over time (the NVIC only provides the number for today on its website). I've combined RIVM and NVIC data in a graph, which I'm now sharing online.
+          <li><strong>Current ICU patients:</strong> Total number of (positively tested or suspected) COVID-19 patients that is currently being treated at an ICU in the Netherlands. Data for March 14, 15, 16 was recovered from various news sources. Data from March 17 to 27 was provided by the <a href="https://nvic.nl/" target="_blank">NVIC</a>. Data starting from March 28 is provided by <a href="https://www.stichting-nice.nl/" target="_blank">NICE</a>.
+          <li><strong>Maximum ICU capacity (1037 to 1500):</strong> Intensive Care capacity (called ICU, or IC in Dutch) for corona patients. Maximum capacity that can be offered in the near future, as reported by NOS on <a href="https://nos.nl/artikel/2327625-volgende-week-500-tot-1000-coronapatienten-op-ic-s-verwacht.html" target="_blank">March 19</a>. Actual limit of 925 as reported by NOS on <a href="https://nos.nl/artikel/2327537-corona-in-nederland-cijfers-van-24-maart.html" target="_blank">March 24</a>. Actual limited will be increased  from 925 to 1037 by March 30 as reported by NRC on <a href="https://www.nrc.nl/nieuws/2020/03/26/tweede-kamer-vol-ongeduld-over-coronabeleid-a3995067" target="_blank">March 26</a>. 
+          <li><strong>Why this graph?</strong> Most graphs about corona show cumulative numbers (the line can only go up). Next to that, I couldn't find a graph that showed ICU numbers from the NVIC over time (the NVIC only provides the number for today on its website). I've combined RIVM and NVIC data in a graph, which I'm now sharing online.
           <li><a href="https://twitter.com/jvannistelrooy" target="_blank">https://twitter.com/jvannistelrooy</a></li>
-          <li><strong>Sources:</strong> <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">RIVM</a>, <a href="https://nvic.nl/" target="_blank">NVIC</a></li>
+          <li><strong>Sources:</strong> <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">RIVM</a>, <a href="https://nvic.nl/" target="_blank">NVIC</a>, <a href="https://www.stichting-nice.nl/" target="_blank">NICE</a></li>
           <li><strong>Last update:</strong> <span id="lastModified"></span></li>
         </ul>
       </div>
 
   <script type="text/javascript">
-    var positiveActive = [1,1,5,3,8,5,15,44,46,60,77,56,61,121,111,190,155,176,278,292,346,409,534,637,573,545,811,852,1019,1172]
-    var positiveActiveAverage = [1,2.3,3.6,4.4,7.2,15.0,23.6,34.0,48.4,56.6,60.0,75.0,85.2,107.8,127.6,150.6,182.0,218.2,249.4,300.2,371.8,443.6,499.8,539.6,620.0,683.6,760.0,879.8,1014.3,1172.0]
+    var positiveActive = [1,1,5,3,8,5,15,44,46,60,77,56,61,121,111,190,155,176,278,292,346,409,534,637,573,545,811,852,1019,1172,1159]
+    var positiveActiveAverage = [1,2.3,3.6,4.4,7.2,15.0,23.6,34.0,48.4,56.6,60.0,75.0,85.2,107.8,127.6,150.6,182.0,218.2,249.4,300.2,371.8,443.6,499.8,539.6,620.0,683.6,760.0,879.8,1002.6,1116.7,1159.0]
     //var positiveActive3days = [1,2,3,9,16,16,28,64,105,150,183,193,194,238,293,422,456,521,609,746,916,1047,1289,1580,1744,1755,1929,2208];
-    var ICData = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,35,55,96,135,177,210,281,354,405,487,546,644,761,873];
-    var dateLabels = ["2/27/2020","2/28/2020","2/29/2020","3/1/2020","3/2/2020","3/3/2020","3/4/2020","3/5/2020","3/6/2020","3/7/2020","3/8/2020","3/9/2020","3/10/2020","3/11/2020","3/12/2020","3/13/2020","3/14/2020","3/15/2020","3/16/2020","3/17/2020","3/18/2020","3/19/2020","3/20/2020","3/21/2020","3/22/2020","3/23/2020","3/24/2020","3/25/2020","3/26/2020","3/27/2020"];
+    var ICData = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,35,55,96,135,177,210,281,354,405,487,546,644,761,873,912];
+    var dateLabels = ["2/27/2020","2/28/2020","2/29/2020","3/1/2020","3/2/2020","3/3/2020","3/4/2020","3/5/2020","3/6/2020","3/7/2020","3/8/2020","3/9/2020","3/10/2020","3/11/2020","3/12/2020","3/13/2020","3/14/2020","3/15/2020","3/16/2020","3/17/2020","3/18/2020","3/19/2020","3/20/2020","3/21/2020","3/22/2020","3/23/2020","3/24/2020","3/25/2020","3/26/2020","3/27/2020","3/28/2020"];
     var dateLabelsMobile = [...dateLabels];
 
     for (var i = dateLabelsMobile.length % 2; i < dateLabelsMobile.length; i += 2) {
@@ -125,7 +125,7 @@
           },
           annotations: {
             yaxis: [{
-              y: 925,
+              y: 1037,
               y2: 1500,
               borderColor: '#000',
               fillColor: '#d73539',
@@ -137,7 +137,7 @@
                   color: '#FFF',
                   background: '#d73539',
                 },
-                text: 'Maximum ICU capacity (925 to 1500)',
+                text: 'Maximum ICU capacity (1037 to 1500)',
               }
             }],
             points: [{
@@ -147,7 +147,7 @@
                 size: 0,
               },
               label: {
-                offsetY: -5,
+                offsetY: -15,
                 borderColor: '#27648b',
                 textAnchor: 'end',
                 position: 'right',
@@ -161,7 +161,7 @@
             },
             {
               x: moment(dateLabels[dateLabels.length - 1]).format("MMM D"),
-              y: 350,
+              y: 400,
               marker: {
                 size: 0,
               },
@@ -338,7 +338,7 @@
               },
               annotations: {
                 yaxis: [{
-                  y: 1000,
+                  y: 1037,
                   y2: 1500,
                   borderColor: '#000',
                   fillColor: '#d73539',
@@ -350,7 +350,7 @@
                       color: '#FFF',
                       background: '#d73539',
                     },
-                    text: 'Maximum ICU capacity (925 to 1500)',
+                    text: 'Maximum ICU capacity (1037 to 1500)',
                   }
                 }],
                 points: [{
@@ -410,7 +410,7 @@
                       background: '#f4a334',
                       fontWeight: 'bold'
                     },
-                    text: '873',
+                    text: '912',
                   }
                 }]
               }
