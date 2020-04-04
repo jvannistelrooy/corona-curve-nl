@@ -63,7 +63,8 @@
   <body>
       <div id="chart">      
       </div>
-      <div id="context">
+      <div style="margin: 30px; font-size: 18px;">Redirecting to https://stichting-nice.nl</div>
+      <!-- <div id="context">
         <ul>
           <li><strong>New confirmed cases:</strong> The number of new people who tested positive for the novel coronavirus according to <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">data by the RIVM</a>. The dashed line is the 5-day centered moving average.<br> 
           ⚠️ The number of confirmed cases depends on the testing strategy and doesn't predict future cases or the number of corona patients at the ICU.
@@ -76,7 +77,7 @@
           <li><strong>Sources:</strong> <a href="https://www.rivm.nl/nieuws/actuele-informatie-over-coronavirus" target="_blank">RIVM</a>, <a href="https://nvic.nl/" target="_blank">NVIC</a>, <a href="https://www.stichting-nice.nl/" target="_blank">NICE</a></li>
           <li><strong>Last update:</strong> <span id="lastModified"></span></li>
         </ul>
-      </div>
+      </div> -->
 
   <script type="text/javascript">
     var positiveActive = [1,1,5,3,8,5,15,44,46,60,77,56,61,121,111,190,155,176,278,292,346,409,534,637,573,545,811,852,1019,1172,1159,1104,884,845,1019,1083,1039]
@@ -410,7 +411,7 @@
         };
 
       var chart = new ApexCharts(document.querySelector("#chart"), options);
-      chart.render();
+      //chart.render();
 
 
       document.getElementById("lastModified").innerHTML = moment(document.lastModified).format("D-M-YYYY H:mm");
@@ -442,6 +443,8 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
+
+      window.location = "https://stichting-nice.nl/";
     </script>
   </body>
 </html>
